@@ -1,0 +1,176 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #ffffff, #fff5f7, #ffffff);
+  font-family: Georgia, serif;
+  position: relative;
+  padding: 20px;
+}
+
+/* Floating Hearts */
+.hearts::before,
+.hearts::after {
+  content: "❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤";
+  position: absolute;
+  width: 100%;
+  color: rgba(255, 105, 135, 0.18);
+  font-size: 24px;
+  animation: floatHearts 18s linear infinite;
+}
+
+.hearts::after {
+  top: 50%;
+  animation-duration: 24s;
+}
+
+@keyframes floatHearts {
+  from {
+    transform: translateY(100vh);
+  }
+  to {
+    transform: translateY(-120vh);
+  }
+}
+
+.card-container {
+  perspective: 1500px;
+}
+
+.card {
+  width: 350px;
+  max-width: 100%;
+  height: 520px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.4s ease;
+}
+
+.card.open {
+  transform: rotateY(-180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.front {
+  background: linear-gradient(145deg, #ffffff, #fff5f7);
+  border: 1px solid rgba(255,255,255,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.front h1 {
+  color: #e11d48;
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.front p {
+  color: #777;
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+.rose-button {
+  border: none;
+  background: none;
+  font-size: 72px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  animation: glow 2s infinite ease-in-out;
+}
+
+.rose-button:hover {
+  transform: scale(1.08);
+}
+
+@keyframes glow {
+  0%,100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.back {
+  background: linear-gradient(to bottom, #ffffff, #fff7f8);
+  transform: rotateY(180deg);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.back h2 {
+  color: #e11d48;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.message-box {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+#typed-text {
+  white-space: pre-wrap;
+  line-height: 1.9;
+  color: #444;
+  font-size: 15px;
+  border-right: 2px solid #e11d48;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.bottom-heart {
+  text-align: center;
+  color: #f472b6;
+  font-size: 28px;
+  margin-top: 14px;
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+@media (max-width: 420px) {
+  .card {
+    height: 500px;
+  }
+
+  .front h1 {
+    font-size: 36px;
+  }
+
+  #typed-text {
+    font-size: 14px;
+  }
+}
